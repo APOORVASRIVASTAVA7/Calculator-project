@@ -9,6 +9,37 @@ document.addEventListener("DOMContentLoaded", () => {
     let operator = null;
     let justCalculated = false;
 
+    document.addEventListener("keydown", (event) => {
+
+        const key = event.key;
+
+        if (!isNaN(key)) {
+            appendNumber(key);
+        }
+        if (key === ".") {
+            appendNumber(".");
+        }
+        if (key === "+" || key === "-" || key === "*" || key === "/") {
+            chooseOperator(key);
+        }
+
+        if (key === "Enter" || key === "=") {
+            compute();
+        }
+
+        if (key === "Backspace") {
+            deleteLast();
+        }
+
+        if (key === "Escape") {
+            clearAll();
+        }
+
+        updateDisplay();
+    });
+
+
+
     buttons.forEach(button => {
         button.addEventListener("click", () => {
 
